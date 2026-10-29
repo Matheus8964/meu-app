@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10233f">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Suporte RH">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <title>Suporte | App RH</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">RH</div>
+        <div><strong>SUPORTE RH</strong><small>Central de sistemas</small></div>
+      </div>
+      <div class="menu-caption">MENU PRINCIPAL</div>
+      <nav class="nav" aria-label="Menu principal">
+        <button class="nav-item active" data-page="inicio"><span class="nav-icon">⌂</span><span>Início</span></button>
+        <button class="nav-item" data-page="folgas"><span class="nav-icon">▦</span><span>Folgas</span></button>
+        <button class="nav-item" data-page="trocas"><span class="nav-icon">⇄</span><span>Trocas</span></button>
+        <button class="nav-item" data-page="atestados"><span class="nav-icon">▤</span><span>Atestados</span></button>
+        <button class="nav-item" data-page="treinamentos"><span class="nav-icon">▣</span><span>Treinamentos</span></button>
+        <button class="nav-item" data-page="dashboard"><span class="nav-icon">▥</span><span>Dashboard Planilha</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span>
+        <div><strong>Portal de suporte</strong><small>Configure os links no arquivo</small><small>config.js</small></div>
+      </div>
+    </aside>
+
+    <div class="scrim" id="scrim"></div>
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+        <div class="breadcrumb"><span>App RH</span><span class="crumb-sep">/</span><strong id="pageCrumb">Início</strong></div>
+        <div class="topbar-right"><span class="live-dot"></span><span>Central de suporte</span></div>
+      </header>
+
+      <section class="welcome" id="welcome">
+        <div>
+          <div class="eyebrow">PORTAL INTERNO</div>
+          <h1>Central de suporte do App RH</h1>
+          <p>Selecione uma tela no menu lateral para abrir o sistema correspondente ou registrar orientações de suporte.</p>
+        </div>
+        <div class="welcome-art" aria-hidden="true"><div class="art-circle">RH</div><span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✧</span></div>
+      </section>
+
+      <section class="page-heading" id="pageHeading" hidden>
+        <div><div class="eyebrow">MÓDULO</div><h1 id="pageTitle">Folgas</h1><p id="pageDescription"></p></div>
+        <span class="module-pill" id="modulePill">Módulo</span>
+      </section>
+
+      <section class="home-content" id="homeContent">
+        <div class="section-title"><div><h2>Acesso rápido</h2><p>Abra um módulo para visualizar a tela integrada.</p></div></div>
+        <div class="module-grid">
+          <button class="module-card" data-page="folgas"><span class="card-icon blue">▦</span><span class="card-title">Folgas</span><span class="card-desc">Solicitações e consulta de folgas</span><span class="card-arrow">↗</span></button>
+          <button class="module-card" data-page="trocas"><span class="card-icon violet">⇄</span><span class="card-title">Trocas</span><span class="card-desc">Acompanhamento de trocas de plantão</span><span class="card-arrow">↗</span></button>
+          <button class="module-card" data-page="atestados"><span class="card-icon orange">▤</span><span class="card-title">Atestados</span><span class="card-desc">Acesso à tela de atestados</span><span class="card-arrow">↗</span></button>
+          <button class="module-card" data-page="treinamentos"><span class="card-icon green">▣</span><span class="card-title">Treinamentos</span><span class="card-desc">Capacitações e certificados</span><span class="card-arrow">↗</span></button>
+          <button class="module-card" data-page="dashboard"><span class="card-icon cyan">▥</span><span class="card-title">Dashboard Planilha</span><span class="card-desc">Painéis e relatórios em planilhas</span><span class="card-arrow">↗</span></button>
+        </div>
+        <div class="tip-panel"><div class="tip-icon">i</div><div><strong>Como configurar as telas?</strong><p>Edite o arquivo <code>config.js</code> e informe a URL de cada sistema. Você pode escolher abrir dentro desta página por iframe ou abrir em uma nova guia usando o modo <code>link</code>.</p></div></div>
+      </section>
+
+      <section class="viewer-section" id="viewerSection" hidden>
+        <div class="viewer-toolbar">
+          <div><strong id="viewerLabel">Tela integrada</strong><small id="viewerUrlHint">O endereço será definido em config.js</small></div>
+          <div class="viewer-actions"><button class="secondary-btn" id="openExternal" disabled>↗ Abrir em nova guia</button><button class="secondary-btn" id="reloadFrame" disabled>⟳ Recarregar</button></div>
+        </div>
+        <div class="viewer-empty" id="viewerEmpty">
+          <div class="empty-icon">⌘</div>
+          <h2>Esta tela está pronta para configurar</h2>
+          <p>Adicione a URL do sistema no arquivo <code>config.js</code>. Se o site permitir incorporação, ele será exibido aqui. Caso bloqueie iframe, use “Abrir em nova guia”.</p>
+          <div class="empty-example"><span>Exemplo</span><code>folgas: { url: "https://seu-link", mode: "iframe" }</code></div>
+        </div>
+        <div class="frame-wrap" id="frameWrap" hidden>
+          <div class="frame-loading" id="frameLoading"><span class="spinner"></span><span>Carregando tela...</span></div>
+          <iframe id="moduleFrame" title="Tela do módulo" allow="clipboard-read; clipboard-write; fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <div class="link-mode" id="linkMode" hidden>
+          <div class="empty-icon">↗</div><h2>Este módulo abre em outra guia</h2><p>Por segurança ou por configuração, o conteúdo não será incorporado nesta página.</p><button class="primary-btn" id="openLinkNow">Abrir sistema</button>
+        </div>
+      </section>
+      <footer class="footer"><span>App RH · Central de suporte</span><span>Progressive Web App</span></footer>
+    </main>
+  </div>
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
